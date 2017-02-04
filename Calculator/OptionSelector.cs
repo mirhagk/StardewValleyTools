@@ -37,5 +37,19 @@ namespace Calculator
         public static OptionSelector<string> Create(params string[] options) => Create(options.AsEnumerable());
         public static OptionSelector<T> Create<T>(IEnumerable<string> optionNames, IEnumerable<T> optionValues)
             => Create(optionNames.Zip(optionValues, (a, b) => new KeyValuePair<string, T>(a, b)));
+        public static OptionCreator<T> Create<T>(string name, T value) => new OptionCreator<T>().AddOption(name, value);
+    }
+    class OptionCreator<T>
+    {
+        List<KeyValuePair<string, T>> options = new List<KeyValuePair<string, T>>();
+        public OptionCreator<T> AddOption(string name, T value)
+        {
+            options.Add(new KeyValuePair<string, T>(name, value));
+            return this;
+        }
+        public T Select() => OptionSelector.Create(options).Select();
+    }
+    class OptionCreator
+    {
     }
 }

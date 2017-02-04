@@ -21,10 +21,8 @@ namespace Calculator
                 RunShard(arguments);
             else
             {
-                switch (OptionSelector.Create("shard").Select())
-                {
-                    case "shard": RunShard(arguments); break;
-                }
+                OptionSelector.Create<Action<Args>>("Calculate when you'll find prismatic shards", RunShard)
+                    .Select()(arguments);
             }
         }
         static void RunShard(Args args)=> new PrismaticShardCalculator(new SaveFileManager()).Run(args);
