@@ -34,21 +34,8 @@ namespace Calculator
         }
         public SaveFile PromptToSelectSave()
         {
-            while (true)
-            {
-                var saves = GetSaveFiles().ToList();
-                var i = 0;
-                foreach (var save in saves)
-                {
-                    Console.WriteLine($"{++i}. {save.Name} - {save.Date}");
-                }
-                Console.Write($"Choose which save file (1-{i}): ");
-                var response = Console.ReadLine();
-                int selected;
-                if (int.TryParse(response, out selected))
-                    if (selected > 0 && selected <= saves.Count)
-                        return saves[selected - 1];
-            }
+            var saves = GetSaveFiles().ToList();
+            return OptionSelector.Create(saves.Select(s => $"{s.Name}-{s.Date}"), saves).Select();
         }
         string GetDataByElement(string data, string elementName)
         {

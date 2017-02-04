@@ -18,7 +18,15 @@ namespace Calculator
             if (arguments == null)
                 return;
             if (arguments.Shard)
-                new PrismaticShardCalculator(new SaveFileManager()).Run(arguments);
+                RunShard(arguments);
+            else
+            {
+                switch (OptionSelector.Create("shard").Select())
+                {
+                    case "shard": RunShard(arguments); break;
+                }
+            }
         }
+        static void RunShard(Args args)=> new PrismaticShardCalculator(new SaveFileManager()).Run(args);
     }
 }
