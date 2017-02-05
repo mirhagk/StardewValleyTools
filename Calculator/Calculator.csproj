@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MushroomLevelCalculator.cs" />
     <Compile Include="OptionSelector.cs" />
     <Compile Include="PrismaticShardCalculator.cs" />
     <Compile Include="Program.cs" />
