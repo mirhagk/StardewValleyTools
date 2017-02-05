@@ -10,9 +10,10 @@ namespace Calculator
     class SaveFile
     {
         public string Name { get; set; }
-        public int UniqueID { get; set; }
+        public ulong UniqueID { get; set; }
         public string Date { get; set; }
         public int GeodesCracked { get; set; }
+        public uint DaysPlayed { get; set; }
     }
     class SaveFileManager
     {
@@ -26,9 +27,10 @@ namespace Calculator
                 yield return new SaveFile
                 {
                     Name = saveName.Split('_')[0],
-                    UniqueID = int.Parse(saveName.Split('_')[1]),
+                    UniqueID = ulong.Parse(saveName.Split('_')[1]),
                     Date = GetDataByElement(data, "dateStringForSaveGame"),
-                    GeodesCracked = int.Parse(GetDataByElement(data, "geodesCracked"))
+                    GeodesCracked = int.Parse(GetDataByElement(data, "geodesCracked")),
+                    DaysPlayed = uint.Parse(GetDataByElement(data, "daysPlayed"))
                 };
             }
         }

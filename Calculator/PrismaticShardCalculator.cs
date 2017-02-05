@@ -41,7 +41,7 @@ namespace Calculator
                 Console.WriteLine($"The next {Math.Min(5, shardsCouldGet.Count - 1)} shards after that are at {string.Join(",", shardsCouldGet.Skip(1).Take(5))} geodes cracked");
             }
         }
-        bool GetsShard(int geodesCracked, int uniqueIDForThisGame)
+        bool GetsShard(int geodesCracked, ulong uniqueIDForThisGame)
         {
 
             Random random = new Random((int)(geodesCracked + (uint)((int)uniqueIDForThisGame / 2)));
