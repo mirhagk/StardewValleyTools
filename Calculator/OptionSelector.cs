@@ -6,6 +6,23 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
+    class InputHelper
+    {
+        public int GetInteger(string message, int max = int.MaxValue, int min = 0, int? defaultNum = null)
+        {
+            while (true)
+            {
+                Console.WriteLine(message);
+                var input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input) && defaultNum.HasValue)
+                    return defaultNum.Value;
+                int selected;
+                if (int.TryParse(input, out selected))
+                    if (selected >= min && selected <= max)
+                        return selected;
+            }
+        }
+    }
     class OptionSelector<T>
     {
         readonly KeyValuePair<string,T>[] options;
